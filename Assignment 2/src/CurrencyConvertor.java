@@ -12,13 +12,13 @@ public class CurrencyConvertor{
         JLabel inrLabel  = new JLabel("Enter the amount in INR");
         inrLabel.setBounds(40, 40, 200, 40);
 
-        JTextField inrJTextField = new JTextField("0");
+        JTextField inrJTextField = new JTextField();
         inrJTextField.setBounds(240, 40, 60, 40);
 
         JLabel usdLabel  = new JLabel("Enter the amount in USD");
         usdLabel.setBounds(40, 80, 200, 40);
 
-        JTextField usdJTextField = new JTextField("0");
+        JTextField usdJTextField = new JTextField();
         usdJTextField.setBounds(240, 80, 60, 40);
 
         JButton convert = new JButton("Convert the currency");
@@ -26,7 +26,7 @@ public class CurrencyConvertor{
 
 
         JLabel resultLabel  = new JLabel();
-        resultLabel.setBounds(200, 180, 150, 40);
+        resultLabel.setBounds(200, 180, 190, 40);
 
         jFrame.add(inrLabel);
         jFrame.add(inrJTextField);
@@ -43,36 +43,36 @@ public class CurrencyConvertor{
                 
                 if(!inrJTextField.getText().isEmpty() && usdJTextField.getText().isEmpty()){
                     float inrvalue = Float.parseFloat(inrJTextField.getText().toString());
+                    float inrtousd = (float) (inrvalue/83.73);
+                    resultLabel.setText(String.valueOf(inrtousd)+"USD");
+                    
                     
                 }
 
                 else if(inrJTextField.getText().isEmpty() && !usdJTextField.getText().isEmpty()){
                     float usdvalue = Float.parseFloat(usdJTextField.getText().toString());
+                    float usdtoinr = (float) (usdvalue*83.73);
+                    resultLabel.setText(String.valueOf(usdtoinr)+"INR");
                 }
 
                 else if(inrJTextField.getText().isEmpty() || usdJTextField.getText().isEmpty()){
+                    resultLabel.setText("Please input at least one value");
 
                 }
 
                 else{
                     float inrvalue = Float.parseFloat(inrJTextField.getText());
                     float usdvalue = Float.parseFloat(usdJTextField.getText());
-                    float inrtousd = (float) (inrvalue/83.73);
-                    float usdtoinr = (float) (usdvalue*83.73);
-                    resultLabel.setText(String.valueOf(inrtousd)+"USD     "+String.valueOf(usdtoinr)+"INR");
+                   // float inrtousd = (float) (inrvalue/83.73);
+                    //float usdtoinr = (float) (usdvalue*83.73);
+                   // resultLabel.setText(String.valueOf(inrtousd)+"USD     "+String.valueOf(usdtoinr)+"INR");
+                   resultLabel.setText(String.valueOf((float)(inrvalue/83.73))+"USD     "+String.valueOf((float)(usdvalue*83.73))+"INR");
                 }
                     
                 }});
-
-                
-
-
-
-
-
-        jFrame.setLayout( null);
-        jFrame.setSize(400, 400);
-        jFrame.setVisible(true);
+                jFrame.setLayout( null);
+                jFrame.setSize(400, 400);
+                jFrame.setVisible(true);  
         
     }
 }
